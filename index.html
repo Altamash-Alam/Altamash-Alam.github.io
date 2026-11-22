@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Altamash Alam | Data Analyst</title>
+<meta name="description" content="Portfolio of Altamash Alam, Data Analyst. SQL, Python, Excel and Power BI projects on e-commerce sales and quick-commerce operations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark analytics-console look. Glowing hero with a live-style stats panel, then project cards that carry their own charts drawn to scale. */
+:root {
+  --bg: #0a0f1a;
+  --surface: #111a2b;
+  --surface-2: #16223a;
+  --ink: #eaf0fa;
+  --muted: #8b9bb4;
+  --line: #22304a;
+  --accent: #ff7a59;
+  --accent-2: #3ee0c5;
+  --on-accent: #0a0f1a;
+  --glow-1: rgba(255, 122, 89, 0.18);
+  --glow-2: rgba(62, 224, 197, 0.14);
+  --grid: rgba(139, 155, 180, 0.07);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f6fb;
+    --surface: #ffffff;
+    --surface-2: #eef3fa;
+    --ink: #0d1526;
+    --muted: #5a6a84;
+    --line: #dbe3f0;
+    --accent: #d4421c;
+    --accent-2: #0a8f7d;
+    --on-accent: #ffffff;
+    --glow-1: rgba(212, 66, 28, 0.12);
+    --glow-2: rgba(10, 143, 125, 0.12);
+    --grid: rgba(13, 21, 38, 0.06);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f6fb;
+  --surface: #ffffff;
+  --surface-2: #eef3fa;
+  --ink: #0d1526;
+  --muted: #5a6a84;
+  --line: #dbe3f0;
+  --accent: #d4421c;
+  --accent-2: #0a8f7d;
+  --on-accent: #ffffff;
+  --glow-1: rgba(212, 66, 28, 0.12);
+  --glow-2: rgba(10, 143, 125, 0.12);
+  --grid: rgba(13, 21, 38, 0.06);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: var(--accent-2); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 62rem; margin: 0 auto; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+
+/* NAV */
+.nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.75rem; }
+.brand { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+.brand i { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 1.25rem; }
+.nav-links { display: flex; gap: 1.25rem; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.toggle { width: 2.4rem; height: 2.4rem; display: grid; place-items: center; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 50%; cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
+.toggle:hover { border-color: var(--accent); transform: rotate(18deg); }
+.toggle svg { width: 1.1rem; height: 1.1rem; }
+.toggle .sun { display: none; }
+:root[data-theme="light"] .toggle .sun { display: block; }
+:root[data-theme="light"] .toggle .moon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .toggle .sun { display: block; }
+  :root:not([data-theme="dark"]) .toggle .moon { display: none; }
+}
+
+/* HERO */
+.hero-bg {
+  position: relative;
+  background:
+    radial-gradient(40rem 26rem at 12% -10%, var(--glow-1), transparent 70%),
+    radial-gradient(38rem 26rem at 95% 20%, var(--glow-2), transparent 70%);
+}
+.hero-bg::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  pointer-events: none;
+}
+.hero { position: relative; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; padding-block: 5rem 4.5rem; }
+.pill { display: inline-flex; align-items: center; gap: 0.55rem; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--accent-2); border: 1px solid color-mix(in srgb, var(--accent-2) 40%, transparent); background: color-mix(in srgb, var(--accent-2) 10%, transparent); padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 1.4rem; }
+.pill i { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--accent-2); animation: pulse 2s ease-in-out infinite; }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 7vw, 4.8rem); line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 1.25rem; text-wrap: balance; }
+h1 .grad { background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { font-size: 1.15rem; color: var(--muted); max-width: 33rem; margin: 0 0 2rem; text-wrap: pretty; }
+.links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-size: 0.95rem; font-weight: 600; border-radius: 10px; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+.btn:hover { transform: translateY(-2px); border-color: var(--accent-2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { box-shadow: 0 8px 28px -6px var(--accent); }
+
+/* HERO STATS PANEL */
+.panel { background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem; box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.55); min-width: 0; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); margin-bottom: 0.4rem; }
+.dots { display: flex; gap: 0.35rem; }
+.dots i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--line); }
+.stat { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px dashed var(--line); }
+.stat:last-child { border-bottom: 0; }
+.stat span { font-size: 0.85rem; color: var(--muted); }
+.stat b { font-family: var(--font-mono); font-weight: 500; font-size: 1.3rem; font-variant-numeric: tabular-nums; text-align: right; }
+.stat b.c1 { color: var(--accent); }
+.stat b.c2 { color: var(--accent-2); }
+
+/* SECTIONS */
+section { padding-block: 4.5rem; }
+.sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+.sec-head h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: -0.03em; margin: 0; }
+.sec-head::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+p { margin: 0 0 1rem; }
+
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.about-grid p { color: var(--muted); font-size: 1.05rem; margin: 0; }
+.about-grid p:first-child { color: var(--ink); }
+
+.skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr)); gap: 1rem; }
+.skill { position: relative; background: var(--surface); border: 1px solid var(--line); padding: 1.25rem; border-radius: 14px; min-width: 0; transition: transform 0.25s, border-color 0.25s; overflow: hidden; }
+.skill::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); opacity: 0.0; transition: opacity 0.25s; }
+.skill:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent-2) 50%, var(--line)); }
+.skill:hover::before { opacity: 1; }
+.skill h4 { margin: 0 0 0.5rem; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.skill p { margin: 0; font-size: 0.97rem; color: var(--ink); }
+
+/* PROJECTS */
+.project { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 2rem; margin-bottom: 2rem; min-width: 0; overflow: hidden; transition: border-color 0.3s; }
+.project::before { content: ""; position: absolute; width: 22rem; height: 22rem; right: -9rem; top: -11rem; background: radial-gradient(closest-side, var(--glow-1), transparent); pointer-events: none; }
+.project.alt::before { background: radial-gradient(closest-side, var(--glow-2), transparent); }
+.project:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.project > * { position: relative; }
+.meta { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; color: var(--accent-2); margin: 0 0 0.6rem; }
+h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.4vw, 2rem); letter-spacing: -0.025em; line-height: 1.15; margin: 0 0 0.75rem; text-wrap: balance; }
+.project > p { color: var(--muted); max-width: 44rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.5rem; padding: 0; list-style: none; }
+.tags li { font-family: var(--font-mono); font-size: 0.75rem; padding: 0.2rem 0.65rem; border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); border-radius: 999px; }
+
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 0.75rem; margin: 0 0 1.75rem; }
+.figure { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; min-width: 0; }
+.figure b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.figure span { font-size: 0.82rem; color: var(--muted); }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.label { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.75rem; }
+.project ul.list { padding: 0; margin: 0 0 1.5rem; list-style: none; }
+.project ul.list li { position: relative; padding-left: 1.4rem; margin-bottom: 0.6rem; font-size: 0.97rem; }
+.project ul.list li::before { content: ""; position: absolute; left: 0; top: 0.62rem; width: 0.55rem; height: 2px; background: var(--accent); }
+
+/* CHARTS */
+.chart { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem; margin-bottom: 1.5rem; }
+.stack { display: flex; height: 1.9rem; border-radius: 6px; overflow: hidden; gap: 2px; }
+.stack div { height: 100%; }
+.stack .s1 { background: var(--accent); }
+.stack .s2 { background: var(--accent-2); }
+.stack .s3 { background: var(--line); }
+.key { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 0.75rem; font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.key i { display: inline-block; width: 0.6rem; height: 0.6rem; border-radius: 2px; margin-right: 0.4rem; }
+.hbars { display: grid; gap: 0.7rem; }
+.hrow { display: grid; grid-template-columns: 5.2rem 1fr 4.4rem; align-items: center; gap: 0.75rem; font-size: 0.88rem; }
+.hrow .name { color: var(--muted); font-family: var(--font-mono); font-size: 0.8rem; }
+.hrow .track { height: 0.8rem; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.hrow .fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--accent-2), var(--accent-2)); }
+.hrow .fill.hot { background: linear-gradient(90deg, var(--accent), var(--accent)); }
+.hrow .val { font-family: var(--font-mono); text-align: right; font-variant-numeric: tabular-nums; }
+.chart-note { font-size: 0.8rem; color: var(--muted); margin: 0.9rem 0 0; }
+
+.shot { margin: 0 0 1.5rem; }
+.shot img { display: block; width: 100%; max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 12px; }
+.shot figcaption { font-size: 0.82rem; color: var(--muted); margin-top: 0.5rem; }
+
+/* CONTACT */
+.contact-card { background: linear-gradient(135deg, var(--surface), var(--surface-2)); border: 1px solid var(--line); border-radius: 20px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; position: relative; overflow: hidden; }
+.contact-card::after { content: ""; position: absolute; width: 20rem; height: 20rem; left: -8rem; bottom: -12rem; background: radial-gradient(closest-side, var(--glow-2), transparent); pointer-events: none; }
+.contact-card > * { position: relative; z-index: 1; }
+.contact-card h3 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 0 0 0.6rem; }
+.contact-card p { color: var(--muted); margin: 0; }
+dl { display: grid; gap: 0.9rem; margin: 0; }
+dt { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+dd { margin: 0.1rem 0 0; overflow-wrap: anywhere; font-weight: 500; }
+dd a { color: var(--ink); text-decoration-color: var(--accent); }
+dd a:hover { color: var(--accent); }
+
+footer { border-top: 1px solid var(--line); padding-block: 1.75rem; color: var(--muted); font-size: 0.85rem; }
+footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero > div:first-child > * { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) both; }
+.hero > div:first-child > *:nth-child(2) { animation-delay: 0.08s; }
+.hero > div:first-child > *:nth-child(3) { animation-delay: 0.16s; }
+.hero > div:first-child > *:nth-child(4) { animation-delay: 0.24s; }
+.panel { animation: rise 0.8s 0.2s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-block: 3.25rem 3rem; }
+  .about-grid, .cols, .contact-card { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  section { padding-block: 3.25rem; }
+  .project { padding: 1.35rem; }
+  .contact-card { padding: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .hrow { grid-template-columns: 3.8rem 1fr 3.6rem; gap: 0.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>Altamash Alam</a>
+    <div class="nav-right">
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="toggle" id="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero-bg">
+    <div class="wrap hero">
+      <div>
+        <div class="pill"><i></i>Data Analyst · SQL · Python · Power BI</div>
+        <h1>I turn raw data into <span class="grad">decisions.</span></h1>
+        <p class="lead">Hi, I am Altamash Alam, a Data Analyst. I work on order and delivery data: where revenue comes from, where operations break down, and what a fix would cost.</p>
+        <div class="links">
+          <a class="btn primary" href="#projects">View projects</a>
+          <a class="btn" href="https://github.com/Altamash-Alam" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/altamash-alam-4b215a44b" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="panel" aria-label="Numbers from my projects">
+        <div class="panel-head"><span>project_numbers</span><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <div class="stat"><span>Delivered orders analysed</span><b class="c2">96,478</b></div>
+        <div class="stat"><span>Revenue analysed</span><b class="c1">R$ 13.2M</b></div>
+        <div class="stat"><span>Simulated orders, 5 dark stores</span><b class="c2">25,000</b></div>
+        <div class="stat"><span>Evening peak delivery</span><b class="c1">~21 min</b></div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <section id="about">
+      <div class="sec-head"><h2>About</h2></div>
+      <div class="about-grid">
+        <p>I work end to end: load and clean the data, query it in SQL, analyse it in Python or Excel, and present the result in a Power BI dashboard.</p>
+        <p>My two projects cover two different problems. One looks at revenue and regional performance in a large e-commerce dataset. The other looks at why a quick-commerce delivery network slows down in the evening, and whether hiring more riders would pay for itself.</p>
+      </div>
+    </section>
+
+    <section id="skills" style="padding-top:0">
+      <div class="sec-head"><h2>Skills</h2></div>
+      <div class="skills">
+        <div class="skill"><h4>Query</h4><p>SQL (MySQL, SQLite), joins, aggregations, window functions</p></div>
+        <div class="skill"><h4>Analyse</h4><p>Python (Pandas, NumPy), data cleaning, outlier and missing-value handling</p></div>
+        <div class="skill"><h4>Model</h4><p>Excel what-if models, cost versus recovered revenue</p></div>
+        <div class="skill"><h4>Report</h4><p>Power BI dashboards, DAX measures, Matplotlib charts</p></div>
+      </div>
+    </section>
+
+    <section id="projects" style="padding-top:0">
+      <div class="sec-head"><h2>Projects</h2></div>
+
+      <article class="project">
+        <p class="meta">SQL · Power BI · Olist dataset (Kaggle)</p>
+        <h3>E-Commerce Sales Analysis</h3>
+        <p>Revenue, order trends and regional performance in the Olist Brazilian e-commerce dataset, about 100,000 orders from 2016 to 2018.</p>
+        <ul class="tags" aria-label="Tools">
+          <li>MySQL</li><li>Power BI</li><li>DAX measures</li>
+        </ul>
+
+        <div class="figures">
+          <div class="figure"><b>96,478</b><span>delivered orders</span></div>
+          <div class="figure"><b>R$ 13.2M</b><span>total revenue</span></div>
+          <div class="figure"><b>R$ 137.04</b><span>average order value</span></div>
+        </div>
+
+        <div class="chart">
+          <p class="label">Revenue concentration by state</p>
+          <div class="stack" role="img" aria-label="São Paulo is about 38% of revenue, Rio de Janeiro and Minas Gerais together about 25%, all other states about 37%">
+            <div class="s1" style="width:38%"></div>
+            <div class="s2" style="width:25%"></div>
+            <div class="s3" style="width:37%"></div>
+          </div>
+          <div class="key">
+            <span><i style="background:var(--accent)"></i>SP 38%</span>
+            <span><i style="background:var(--accent-2)"></i>RJ + MG 25%</span>
+            <span><i style="background:var(--line)"></i>All other states 37%</span>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div>
+            <p class="label">What I did</p>
+            <ul class="list">
+              <li>Loaded 7 tables into MySQL and joined orders, items and customers.</li>
+              <li>Used delivered orders only, with revenue based on item price and excluding freight.</li>
+              <li>Wrote four SQL queries, then rebuilt the same numbers as Power BI measures to confirm they match.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="label">Findings</p>
+            <ul class="list">
+              <li>São Paulo is the largest market at about R$ 5.07M. SP, RJ and MG together bring in about 63% of revenue.</li>
+              <li>Revenue grew through 2017 and peaked in November 2017 at about R$ 0.99M across 7,289 orders. This may relate to Black Friday, but the data alone does not confirm it.</li>
+              <li>Through 2018, monthly revenue stayed between roughly R$ 0.83M and R$ 0.98M, so growth levelled off.</li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="shot">
+          <img src="https://raw.githubusercontent.com/Altamash-Alam/ecommerce-sales-analysis/main/powerbi_dashboard.png" alt="Power BI dashboard with three KPI cards, a monthly revenue trend and the top 10 states by revenue" loading="lazy" onerror="this.closest('figure').hidden=true">
+          <figcaption>Power BI report: KPI cards, monthly revenue trend, top 10 states.</figcaption>
+        </figure>
+
+        <div class="links">
+          <a class="btn" href="https://github.com/Altamash-Alam/ecommerce-sales-analysis" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </article>
+
+      <article class="project alt">
+        <p class="meta">Python · SQL · Excel · Power BI · simulated dataset</p>
+        <h3>Quick-Commerce Dark-Store and Delivery Bottleneck Analysis</h3>
+        <p>I built a simulated dataset of 25,000 orders across 5 dark stores to find why evening deliveries run slow, why orders get cancelled at peak hours, and where stockouts cost revenue.</p>
+        <ul class="tags" aria-label="Tools">
+          <li>Python</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>SQLite</li><li>Excel</li><li>Power BI</li>
+        </ul>
+
+        <div class="figures">
+          <div class="figure"><b>25,000</b><span>orders, 5 dark stores</span></div>
+          <div class="figure"><b>~14-15 min</b><span>average delivery, all day</span></div>
+          <div class="figure"><b>~21 min</b><span>average delivery, 19:00-22:00</span></div>
+        </div>
+
+        <div class="cols">
+          <div class="chart">
+            <p class="label">Average delivery time</p>
+            <div class="hbars">
+              <div class="hrow"><span class="name">All day</span><div class="track"><div class="fill" style="width:58%"></div></div><span class="val">~14-15</span></div>
+              <div class="hrow"><span class="name">19:00-22:00</span><div class="track"><div class="fill hot" style="width:84%"></div></div><span class="val">~21</span></div>
+            </div>
+            <p class="chart-note">Minutes, drawn to a 0-25 min scale.</p>
+          </div>
+          <div class="chart">
+            <p class="label">Peak cancellation rate by store</p>
+            <div class="hbars">
+              <div class="hrow"><span class="name">DS01 · 18</span><div class="track"><div class="fill" style="width:4.8%"></div></div><span class="val">~2.4%</span></div>
+              <div class="hrow"><span class="name">DS02 · 10</span><div class="track"><div class="fill hot" style="width:86.2%"></div></div><span class="val">~43.1%</span></div>
+              <div class="hrow"><span class="name">DS05 · 9</span><div class="track"><div class="fill hot" style="width:94.6%"></div></div><span class="val">~47.3%</span></div>
+            </div>
+            <p class="chart-note">Store · number of riders. Scale 0-50%.</p>
+          </div>
+        </div>
+
+        <div class="cols">
+          <div>
+            <p class="label">What I did</p>
+            <ul class="list">
+              <li>Generated and cleaned the data in Python, flagging missing order values, missing customer IDs and glitch deliveries (0 or extreme minutes) instead of averaging over them.</li>
+              <li>Used SQL, including a window function, to rank hours and check store-level cancellations and delays at peak.</li>
+              <li>Built an Excel what-if model comparing rider hiring cost with recovered orders and revenue.</li>
+              <li>Built a Power BI dashboard of hourly delivery spikes and store-wise cancellation rates.</li>
+            </ul>
+          </div>
+          <div>
+            <p class="label">Findings</p>
+            <ul class="list">
+              <li>The all-day average hides the problem. Delivery time jumps to about 21 minutes between 19:00 and 22:00.</li>
+              <li>The stores with the fewest riders, DS05 and DS02, cancel the most orders at peak, with peak deliveries averaging about 24.7-24.9 minutes.</li>
+              <li>Dairy had the highest estimated stockout loss in the sample run, followed by Home and Bakery.</li>
+              <li>Adding 9 riders at ₹18,000 a month costs ₹1,62,000 a month, which can exceed the revenue recovered if cancellations fall only modestly. Hiring should be tested alongside stockout and peak-routing fixes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="links">
+          <a class="btn" href="https://github.com/Altamash-Alam/quick-commerce-bottleneck-analysis" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+      </article>
+    </section>
+
+    <section id="contact" style="padding-top:0">
+      <div class="sec-head"><h2>Contact</h2></div>
+      <div class="contact-card">
+        <div>
+          <h3>Let's talk data.</h3>
+          <p>Questions about a project, or want to work together? Email is the quickest way to reach me.</p>
+        </div>
+        <dl>
+          <div><dt>Email</dt><dd><a href="mailto:altamashalam14931@gmail.com">altamashalam14931@gmail.com</a></dd></div>
+          <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/altamash-alam-4b215a44b" target="_blank" rel="noopener">linkedin.com/in/altamash-alam-4b215a44b</a></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/Altamash-Alam" target="_blank" rel="noopener">github.com/Altamash-Alam</a></dd></div>
+        </dl>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Altamash Alam</span><span>Data Analyst</span></div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById("theme-toggle");
+  try {
+    var saved = localStorage.getItem("theme");
+    if (saved === "light" || saved === "dark") root.setAttribute("data-theme", saved);
+  } catch (e) {}
+  btn.addEventListener("click", function () {
+    var current = root.getAttribute("data-theme");
+    if (!current) current = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    var next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
